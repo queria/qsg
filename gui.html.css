@@ -1,0 +1,85 @@
+
+html {
+	background-color: black;
+	color: white;
+}
+
+h1 {
+	font-size: 12pt;
+}
+
+a, a:hover, a:visited {
+	color: green;
+	text-decoration: none;
+}
+a:hover {
+	color: yellow;
+	text-decoration: underline;
+}
+
+#menu {
+}
+#menuLogout {
+	float:right;
+	padding: 3px;
+}
+#menu a {
+	color: #30c030;
+}
+
+
+#ecoStatus {
+	color: white;
+	background-color: #603030;
+	border: 0px solid ;
+	padding: 2px;
+}
+.ecoRes {
+	background-color: #402020;
+}
+
+#viewport {
+	float:left;
+	border:1px dashed gray;
+	color:white;
+	background-color:#101010;
+	width: 600px;
+	height: 600px;
+	margin: 0px 5px 0px 5px;
+	overflow: auto;
+	text-align:center;
+}
+
+#map {
+	border-collapse: collapse;
+	margin:auto;
+}
+
+#map th, #map td {
+	width: 20px !important;
+	height: 20px !important;
+	border: 1px solid gray;
+	margin:0px;
+	padding:0px;
+	/*border: 1px solid gray;*/
+}
+
+.list {
+	float: left;
+	font-size: 80%;
+	margin: 0px 5px 0px 5px;
+	height: 600px;
+	width: 200px;
+	overflow:auto;
+	border: 1px solid gray;
+}
+.list .heading {
+	color: gray;
+	text-align: center;
+}
+
+.properties span { color: gray; }
+.properties .name { font-weight:bold; }
+
+.buildings a { display:block; }
+
