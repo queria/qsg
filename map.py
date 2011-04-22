@@ -15,12 +15,14 @@ class World:
         return None
 
     def print_areas(self):
-        print('Total {0} areas:'.format(len(self.areas)))
+        out = []
+        out.append('Total {0} areas:'.format(len(self.areas)))
         for a in self.areas:
-            print(" - "+a.full_str())
+            out.append(" - "+a.full_str())
+        return out
 
     def test(self, str):
-        print('World test: '+str)
+        return ['World test: '+str]
 
 class PositionError(ValueError):
     def __init__(self, x, y):

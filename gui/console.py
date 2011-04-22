@@ -1,6 +1,7 @@
+from gui.meta import *
 import eco
 
-class Console:
+class ConsoleGui(GUI):
     def __init__(self, game):
         self.game = game
 
@@ -30,14 +31,14 @@ class Console:
             command = raw_input('[n]ew player, add [f]actory, [p]rint_status, [q]uit: ')
             self.color_end()
             if command == 'p':
-                self.game.print_status()
+                print('\n'.join(self.game.print_status()))
             elif command == 'n':
                 self.color_start('yellow')
                 name = raw_input(' Player name (empty=cancel): ')
                 self.color_end()
                 if len(name) != 0:
                     p = self.game.new_player(name)
-                    p.print_status()
+                    print('\n'.join(p.print_status()))
                 else:
                     print(' - canceled')
             elif command == 'f':
@@ -58,7 +59,7 @@ class Console:
                         f = eco.StoneFactory()
                     if f:
                         self.game.new_factory(p, f)
-                        f.print_status()
+                        print('\n'.join(f.print_status()))
                     else:
                         print(' - canceled - bad type of factory')
                 else:

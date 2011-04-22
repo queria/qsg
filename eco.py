@@ -37,8 +37,9 @@ class ResourceFactory(object):
         return self.__income
 
     def print_status(self):
-        print("--- " + self.__class__.__name__
-                + ", ".join( [ str(res) for res in self.resources_per_second() ] ))
+        return ["--- " + self.__class__.__name__
+                + ", ".join( [ str(res) for res in self.resources_per_second() ]
+                    )]
 
 class FoodFactory(ResourceFactory):
     def __init__(self):
@@ -73,12 +74,21 @@ class EconomyStatus(object):
         else:
             raise TypeError('Unknown resource')
 
+    def food(self):
+        return self.__food
+
+    def wood(self):
+        return self.__wood
+
+    def stone(self):
+        return self.__stone
+
     def print_status(self):
-        print("--- Resources: [Food: {0}] [Wood: {1}] [Stone: {2}]".format(
+        return ["--- Resources: [Food: {0}] [Wood: {1}] [Stone: {2}]".format(
             self.__food,
             self.__wood,
             self.__stone
-            ))
+            )]
 
 class Player(object):
     def __init__(self, name):
@@ -94,6 +104,9 @@ class Player(object):
     def name(self):
         return self.__name
 
+    def factories(self):
+        return self.__factories
+
     def recalculate(self):
         now = time.time()
         diff = now - self.__last_rec
@@ -102,9 +115,16 @@ class Player(object):
             for res in f.resources_per_second():
                 self.__storage.change(res)
 
+    def storage(self):
+        self.recalculate()
+        return self.__storage
+
     def print_status(self):
         self.recalculate()
-        print("-- Status of {0}:".format(self.__name))
-        self.__storage.print_status()
+        out = []
+        out.append("-- Status of {0}:".format(self.__name))
+        out.extend(self.__storage.print_status())
         for f in self.__factories:
-            f.print_status()
+            out.extend(f.print_status())
+        return out
+
