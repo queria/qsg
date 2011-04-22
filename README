@@ -1,0 +1,38 @@
+= QSGame =
+
+== Description ==
+Long term experiment to creaty "MY OWN" game.
+
+First target is to create simple (realy!) web (html+js in webbrowser) game.
+Kind of city building or time-management/clickfest game:
+- you should have your own place (city)
+- you can build buildings (costs resources/time)
+- you gain resources from few buildings
+- you can upgrade them
+
+Later maybe add something like trading with other players and so....
+
+For future vision, it should be prepared for realtime Qt/Ogre/... GUI,
+addition of single units (heroes) controlled by player and evolution into
+mix of city building AND rpg game.
+But it's not important (now and for few next years).
+
+So first milestone is "create something/anything what can be played".
+
+== Technical info ==
+* You can get this/sources from https://github.com/queria/qsg/
+* You need python-2x (Personaly i'm targeting python3 but until better penetration...).
+* You can start with examinig/running of src/main.py
+
+== Author(s) ==
+* Queria Sa-Tas <public@sa-tas.net> (initiatior, Q1 2011)
+
+== License/Copying ==
+Notice:
+	Until i will look into this (study possibilities of licenses
+	and placing corresponding citations into each files header etc)
+	i'm not sure if its legal (valid from law point of view).
+
+Anyway i state that:
+All this work is Public Domain or LGPL - whatever suits you (your country...) best.
+
