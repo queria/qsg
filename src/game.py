@@ -1,4 +1,3 @@
-import map
 import eco
 
 class QSGame(object):
@@ -19,7 +18,7 @@ class QSGame(object):
     def new_factory(self, player, f):
         if not isinstance(f, eco.ResourceFactory):
             raise TypeError('Bad type of factory')
-        player.add_factory( f )
+        player.add_factory(f)
         return f
 
     def players_count(self):

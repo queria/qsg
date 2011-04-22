@@ -26,13 +26,13 @@ def usage():
 
 def main():
     try:
-        opts, args = getopt.getopt(sys.argv[1:], 'hw', ['help', 'web'])
+        opts = getopt.getopt(sys.argv[1:], 'hw', ['help', 'web'])[0]
     except getopt.GetoptError, err:
         print str(err)
         usage()
         sys.exit(2)
     web = False
-    for o, a in opts:
+    for o in opts:
         if o in ('-h', '--help'):
             usage()
             sys.exit()

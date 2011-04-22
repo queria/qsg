@@ -38,23 +38,23 @@ class ResourceFactory(object):
 
     def print_status(self):
         return ["--- " + self.__class__.__name__
-                + ", ".join( [ str(res) for res in self.resources_per_second() ]
+                + ", ".join([ str(res) for res in self.resources_per_second() ]
                     )]
 
 class FoodFactory(ResourceFactory):
     def __init__(self):
         super(FoodFactory, self).__init__()
-        self.add_income( Resource(1.2, Resource.FOOD) )
+        self.add_income(Resource(1.2, Resource.FOOD))
 
 class WoodFactory(ResourceFactory):
     def __init__(self):
         super(WoodFactory, self).__init__()
-        self.add_income( Resource(1.2, Resource.WOOD) )
+        self.add_income(Resource(1.2, Resource.WOOD))
 
 class StoneFactory(ResourceFactory):
     def __init__(self):
         super(StoneFactory, self).__init__()
-        self.add_income( Resource(1.2, Resource.STONE) )
+        self.add_income(Resource(1.2, Resource.STONE))
 
 
 ### REST
@@ -64,13 +64,13 @@ class EconomyStatus(object):
         self.__wood = 0
         self.__stone = 0
 
-    def change(self, resource):
+    def change(self, resource, time_diff):
         if resource.kind == Resource.FOOD:
-            self.__food += resource.amount
+            self.__food += resource.amount * time_diff
         elif resource.kind == Resource.WOOD:
-            self.__wood += resource.amount
+            self.__wood += resource.amount * time_diff
         elif resource.kind == Resource.STONE:
-            self.__stone += resource.amount
+            self.__stone += resource.amount * time_diff
         else:
             raise TypeError('Unknown resource')
 
@@ -113,7 +113,7 @@ class Player(object):
         self.__last_rec = now
         for f in self.__factories:
             for res in f.resources_per_second():
-                self.__storage.change(res)
+                self.__storage.change(res, diff)
 
     def storage(self):
         self.recalculate()

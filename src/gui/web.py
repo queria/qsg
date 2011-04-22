@@ -1,5 +1,4 @@
 from gui.meta import *
-import eco
 
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 
@@ -32,17 +31,17 @@ class WebView(View):
         handler.wfile.write(output)
 
     def pd(self, handler, output):
-        handler.wfile.write('<div>'+output+'</div>')
+        handler.wfile.write('<div>' + output + '</div>')
 
     def pbr(self, handler, lines):
         self.p(handler, '<br />'.join(lines))
 
 class EconomyStatusView(WebView):
-    def __init__(self,ecostatus):
+    def __init__(self, ecostatus):
         self.status = ecostatus
 
     def render(self, handler):
-        self.p(handler,('<div id="ecoStatus">'
+        self.p(handler, ('<div id="ecoStatus">'
             + 'Resources:'
             + ' <span class="ecoRes wood"><span class="count">{0}</span> food</span>'
             + ' <span class="ecoRes wood"><span class="count">{1}</span> wood</span>'
@@ -54,7 +53,7 @@ class EconomyStatusView(WebView):
                     ))
 
 class PlayerView(WebView):
-    def __init__(self,player):
+    def __init__(self, player):
         self.player = player
 
     def render(self, handler):
@@ -96,68 +95,19 @@ class WebGuiHandler(BaseHTTPRequestHandler):
         self.wfile.write('<p>Current path is {0}</p>'.format(str(path)))
         return
 
-#class Console:
-#    def __init__(self, game):
-#        self.game = game
-#
-#    def run(self):
-#        print("\n\n")
-#        print("=== QSGame ~ economy draft ===")
-#        self.main_loop()
-#        print("==============================")
-#        print("\n\n")
-#
-#    def color(self,color):
-#        if color == 'green':
-#            return '32'
-#        elif color == 'yellow':
-#            return '33'
-#        return '0'
-#
-#    def color_start(self, color):
-#        print('\x1b[{0}m'.format(self.color(color))),
-#    def color_end(self):
-#        print('\x1b[0m'),
-#
-#    def main_loop(self):
-#        command = ''
-#        while command != 'q':
-#            self.color_start('green')
-#            command = raw_input('[n]ew player, add [f]actory, [p]rint_status, [q]uit: ')
-#            self.color_end()
-#            if command == 'p':
-#                self.game.print_status()
-#            elif command == 'n':
-#                self.color_start('yellow')
-#                name = raw_input(' Player name (empty=cancel): ')
-#                self.color_end()
-#                if len(name) != 0:
-#                    p = self.game.new_player(name)
-#                    p.print_status()
-#                else:
-#                    print(' - canceled')
-#            elif command == 'f':
-#                self.color_start('yellow')
-#                name = raw_input(' Player name (empty=cancel): ')
-#                self.color_end()
-#                p = self.game.player_by_name(name)
-#                if p:
-#                    self.color_start('yellow')
-#                    kind = raw_input(' Factory type [food|wood|stone]: ')
-#                    self.color_end()
-#                    f = None
-#                    if kind == 'food':
-#                        f = eco.FoodFactory()
-#                    elif kind == 'wood':
-#                        f = eco.WoodFactory()
-#                    elif kind == 'stone':
-#                        f = eco.StoneFactory()
-#                    if f:
-#                        self.game.new_factory(p, f)
-#                        f.print_status()
-#                    else:
-#                        print(' - canceled - bad type of factory')
-#                else:
-#                    print(' - canceled - player not found')
-#
-#
+#==============================================================================
+# - handle different requests:
+#     - /player/new/p_name => p_id
+#     - /login/p_name/pass_hash
+#     - /logout
+#     - /factory/new/player_name/factory_type => f_id
+#     - /factory/delete/f_id
+# - all actions ends with two kinds of result:
+#     - whole new rendered html (for static web gameplay)
+#     - ajax json response to action (for dynamic js/ajax gameplay)
+# - so we have to:
+#     - route incoming request to corresponding game actions (events?)
+#     - if requested, response with action response wrapped in json
+#     - render whole html view of current game status (for current player)
+#==============================================================================
+

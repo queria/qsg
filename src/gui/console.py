@@ -1,7 +1,7 @@
-from gui.meta import *
+import gui.meta
 import eco
 
-class ConsoleGui(GUI):
+class ConsoleGui(gui.meta.GUI):
     def __init__(self, game):
         self.game = game
 
@@ -12,7 +12,7 @@ class ConsoleGui(GUI):
         print("==============================")
         print("\n\n")
 
-    def color(self,color):
+    def color(self, color):
         if color == 'green':
             return '32'
         elif color == 'yellow':
